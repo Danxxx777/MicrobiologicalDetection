@@ -99,6 +99,21 @@
                 app:iconGravity="textStart"
                 app:iconTint="@color/on_accent" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAnalyzePhoto"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/analyze_photo"
+                android:textColor="@color/text_primary"
+                android:textSize="15sp"
+                app:cornerRadius="16dp"
+                app:icon="@drawable/ic_image"
+                app:iconGravity="textStart"
+                app:iconTint="@color/accent"
+                app:strokeColor="@color/accent" />
+
             <LinearLayout
                 android:id="@+id/cardDiscover"
                 android:layout_width="match_parent"

@@ -66,6 +66,17 @@
     <string name="home_subtitle">Escanea un equipo y consulta su guía de uso segura.</string>
     <string name="home_discover_title">Escanea, identifica y aprende</string>
     <string name="home_discover_body">Reconocimiento visual para el laboratorio.</string>
+    <string name="analyze_photo">Analizar una foto</string>
+    <string name="photo_scan_title">Analizar foto</string>
+    <string name="selected_photo">Fotografía seleccionada para analizar</string>
+    <string name="photo_scan_empty">Selecciona una imagen existente o toma una fotografía del equipo.</string>
+    <string name="photo_scan_prompt">El equipo debe ocupar la zona central de la imagen.</string>
+    <string name="gallery">Galería</string>
+    <string name="take_photo">Tomar foto</string>
+    <string name="analyzing_photo">Analizando imagen…</string>
+    <string name="photo_no_detection">No se detectó un equipo. Prueba con una imagen más cercana y clara.</string>
+    <string name="photo_read_error">No se pudo abrir la imagen seleccionada.</string>
+    <string name="photo_detection_result">%1$s detectado con %2$d%% de confianza. Toca el resultado para abrir la ficha.</string>
     <string name="home_detection_title">Detección asistida</string>
     <string name="home_detection_body">Apunta la cámara al equipo que deseas identificar. El escáner seleccionará el objeto situado en la zona central.</string>
     <string name="home_assistant_title">Asistente especializado</string>

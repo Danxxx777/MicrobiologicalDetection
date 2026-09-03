@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/screen_padding"
+        android:paddingVertical="12dp">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="@drawable/bg_circle_action"
+            android:contentDescription="@string/back"
+            android:padding="11dp"
+            android:src="@drawable/ic_arrow_back"
+            android:tint="@color/accent" />
+
+        <TextView
+            style="@style/TextScreenTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_weight="1"
+            android:text="@string/photo_scan_title" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/imageArea"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/black">
+
+        <ImageView
+            android:id="@+id/imgSelected"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/selected_photo"
+            android:scaleType="centerCrop" />
+
+        <com.example.microbiologicaldetection.ml.BoundingBoxOverlay
+            android:id="@+id/overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:id="@+id/emptyState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="28dp">
+
+            <ImageView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_image"
+                android:tint="@color/accent" />
+
+            <TextView
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:gravity="center"
+                android:text="@string/photo_scan_empty"
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progressAnalysis"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            app:indicatorColor="@color/accent"
+            app:trackColor="@color/surface_2" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/bottomControls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/surface"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/screen_padding"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp">
+
+        <TextView
+            android:id="@+id/tvAnalysisStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/photo_scan_prompt"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnGallery"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="52dp"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:text="@string/gallery"
+                android:textColor="@color/text_primary"
+                app:cornerRadius="16dp"
+                app:icon="@drawable/ic_image"
+                app:iconTint="@color/accent"
+                app:strokeColor="@color/accent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCamera"
+                android:layout_width="0dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:text="@string/take_photo"
+                android:textColor="@color/on_accent"
+                app:backgroundTint="@color/accent"
+                app:cornerRadius="16dp"
+                app:icon="@drawable/ic_camera"
+                app:iconTint="@color/on_accent" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

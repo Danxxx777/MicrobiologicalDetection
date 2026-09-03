@@ -26,7 +26,11 @@ class HomeActivity : AppCompatActivity() {
         binding.btnStartScan.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
         }
+        binding.btnAnalyzePhoto.setOnClickListener {
+            startActivity(Intent(this, ImageScanActivity::class.java))
+        }
         binding.btnStartScan.enablePressAnimation()
+        binding.btnAnalyzePhoto.enablePressAnimation()
         playEntranceAnimations()
     }
 
@@ -56,7 +60,8 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun playEntranceAnimations() {
-        listOf(binding.btnStartScan, binding.cardDiscover).forEachIndexed { index, view ->
+        listOf(binding.btnStartScan, binding.btnAnalyzePhoto, binding.cardDiscover)
+            .forEachIndexed { index, view ->
             view.alpha = 0f
             view.translationY = 16.dp
             view.animate()

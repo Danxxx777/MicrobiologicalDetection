@@ -45,6 +45,12 @@
             android:theme="@style/Theme.MicrobiologicalDetection.Camera" />
 
         <activity
+            android:name=".ui.ImageScanActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".ui.HomeActivity" />
+
+        <activity
             android:name=".ui.EquipmentDetailActivity"
             android:exported="false"
             android:screenOrientation="portrait"
@@ -62,6 +68,16 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"
             android:parentActivityName=".ui.EquipmentDetailActivity" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
     </application>
 

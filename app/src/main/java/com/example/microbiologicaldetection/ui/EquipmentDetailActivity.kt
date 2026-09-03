@@ -38,8 +38,7 @@ class EquipmentDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.header.applyInsetsPadding(top = true)
-        binding.bottomBar.applyInsetsPadding(bottom = true)
-        binding.fabOpenChat.applyInsetsMargin(bottom = true)
+        binding.bottomArea.applyInsetsPadding(bottom = true)
 
         binding.tvEquipmentName.text = EquipmentKnowledge.displayName(label)
         binding.tvConfidence.text =

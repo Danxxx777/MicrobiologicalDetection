@@ -33,6 +33,8 @@ El proyecto fue desarrollado para apoyar el aprendizaje dentro del Laboratorio d
 ## Funcionalidades
 
 - Escaneo de video en tiempo real mediante CameraX.
+- Análisis de fotografías seleccionadas desde el Photo Picker de Android.
+- Captura de fotografías a resolución completa mediante `TakePicture` y `FileProvider`.
 - Inferencia remota con un Workflow de Roboflow y un modelo YOLO26s personalizado.
 - Selección del objeto más confiable que intersecta la zona central de enfoque.
 - HUD animado inspirado en un escáner tecnológico, con caja, clase y confianza.
@@ -51,7 +53,7 @@ El proyecto fue desarrollado para apoyar el aprendizaje dentro del Laboratorio d
 
 ```mermaid
 flowchart LR
-    A[CameraX] --> B[Frame RGBA]
+    A[CameraX o fotografía] --> B[Imagen preparada]
     B --> C{Roboflow configurado}
     C -->|Sí| D[Workflow Roboflow + YOLO26s]
     C -->|No| E[Detector LiteRT opcional]
@@ -101,6 +103,7 @@ La ficha técnica y el chat son funciones separadas: la ficha organiza informaci
 - LiteRT 1.2.0 para el detector local opcional.
 - SharedPreferences y JSON para historial, conversaciones y caché local.
 - SpeechRecognizer y TextToSpeech de Android.
+- Photo Picker, TakePicture y FileProvider para imágenes estáticas.
 
 ## Arquitectura del proyecto
 

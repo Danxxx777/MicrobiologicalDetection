@@ -66,12 +66,11 @@ class MainActivity : AppCompatActivity() {
         binding.topBar.applyInsetsPadding(top = true)
         // La pildora de estado cuelga bajo la fila de botones, asi que su
         // margen tambien tiene que bajar con la barra de estado.
-        binding.bottomBar.applyInsetsPadding(bottom = true)
-        binding.fabChat.applyInsetsMargin(bottom = true)
+        binding.bottomArea.applyInsetsPadding(bottom = true)
         binding.tvHint.applyInsetsMargin(bottom = true)
 
         // El overlay dibuja su tarjeta de resultado justo encima de la barra.
-        binding.bottomBar.doOnLayout {
+        binding.bottomArea.doOnLayout {
             binding.overlay.bottomReserved = it.height.toFloat()
         }
 
