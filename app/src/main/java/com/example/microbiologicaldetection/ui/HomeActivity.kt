@@ -2,6 +2,7 @@ package com.example.microbiologicaldetection.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -25,6 +26,8 @@ class HomeActivity : AppCompatActivity() {
         binding.btnStartScan.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
         }
+        binding.btnStartScan.enablePressAnimation()
+        playEntranceAnimations()
     }
 
     override fun onResume() {
@@ -44,10 +47,46 @@ class HomeActivity : AppCompatActivity() {
         }
         binding.tvLastEquipment.text = EquipmentKnowledge.displayName(last)
         binding.cardLastEquipment.visibility = View.VISIBLE
+        binding.cardLastEquipment.enablePressAnimation()
         binding.cardLastEquipment.setOnClickListener {
             startActivity(Intent(this, ChatActivity::class.java).apply {
                 putExtra(ChatActivity.EXTRA_EQUIPMENT, last)
             })
         }
     }
+
+    private fun playEntranceAnimations() {
+        listOf(binding.btnStartScan, binding.cardDiscover).forEachIndexed { index, view ->
+            view.alpha = 0f
+            view.translationY = 16.dp
+            view.animate()
+                .alpha(1f)
+                .translationY(0f)
+                .setStartDelay(index * 90L)
+                .setDuration(300L)
+                .start()
+        }
+    }
+
+    private fun View.enablePressAnimation() {
+        setOnTouchListener { view, event ->
+            when (event.actionMasked) {
+                MotionEvent.ACTION_DOWN -> view.animate()
+                    .scaleX(0.97f)
+                    .scaleY(0.97f)
+                    .setDuration(90L)
+                    .start()
+
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> view.animate()
+                    .scaleX(1f)
+                    .scaleY(1f)
+                    .setDuration(140L)
+                    .start()
+            }
+            false
+        }
+    }
+
+    private val Int.dp: Float
+        get() = this * resources.displayMetrics.density
 }

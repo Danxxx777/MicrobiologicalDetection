@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.microbiologicaldetection.R
+import com.example.microbiologicaldetection.data.ChatHistory
 import com.example.microbiologicaldetection.data.ChatMessage
 import com.example.microbiologicaldetection.data.EquipmentSession
 import com.example.microbiologicaldetection.data.EquipmentKnowledge
@@ -65,10 +66,16 @@ class ChatActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         binding.header.applyInsetsPadding(top = true)
         binding.inputBar.applyInsetsPadding(bottom = true, ime = true)
 
+        messages.addAll(ChatHistory.load(this, equipment))
         adapter = ChatAdapter(messages)
         binding.recyclerChat.apply {
             layoutManager = LinearLayoutManager(this@ChatActivity).also { it.stackFromEnd = true }
             adapter = this@ChatActivity.adapter
+        }
+        if (messages.isNotEmpty()) {
+            binding.recyclerChat.post {
+                binding.recyclerChat.scrollToPosition(messages.lastIndex)
+            }
         }
 
         binding.btnBack.setOnClickListener { finish() }
@@ -215,6 +222,7 @@ class ChatActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         messages.add(msg)
         adapter.notifyItemInserted(messages.lastIndex)
         binding.recyclerChat.scrollToPosition(messages.lastIndex)
+        if (!msg.isTyping) ChatHistory.save(this, equipment, messages)
     }
 
     private fun removeMessage(msg: ChatMessage) {

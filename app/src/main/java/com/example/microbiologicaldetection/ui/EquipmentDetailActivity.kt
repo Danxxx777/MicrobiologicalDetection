@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.microbiologicaldetection.R
 import com.example.microbiologicaldetection.data.EquipmentSheet
 import com.example.microbiologicaldetection.data.EquipmentKnowledge
+import com.example.microbiologicaldetection.data.EquipmentHistory
 import com.example.microbiologicaldetection.data.EquipmentSession
 import com.example.microbiologicaldetection.databinding.ActivityEquipmentDetailBinding
 import com.example.microbiologicaldetection.databinding.ItemDatasheetSectionBinding
@@ -44,16 +46,25 @@ class EquipmentDetailActivity : AppCompatActivity() {
             getString(R.string.confidence_value, (confidence * 100).toInt())
         EquipmentSession.save(this, label)
 
-        sheet = EquipmentKnowledge.sheetFor(label)
-        loadingSheet = sheet == null
+        val institutional = EquipmentKnowledge.sheetFor(label)
+        val cached = EquipmentHistory.getSheet(this, label)
+        sheet = when {
+            institutional != null && cached != null -> institutional.completedWith(cached)
+            else -> institutional ?: cached
+        }
+        loadingSheet = sheet?.isComplete() != true
 
         bindSections()
         bindActions()
-        loadEquipmentSheet()
+        if (loadingSheet) loadEquipmentSheet()
     }
 
     private fun bindSections() {
-        val fallback = getString(if (loadingSheet) R.string.section_loading else R.string.section_empty)
+        val fallback = getString(if (loadingSheet) R.string.section_pending else R.string.section_empty)
+        binding.progressSheet.visibility = if (loadingSheet) View.VISIBLE else View.GONE
+        binding.tvSheetStatus.setText(
+            if (loadingSheet) R.string.sheet_loading_status else R.string.sheet_ready_status
+        )
         fun fill(section: ItemDatasheetSectionBinding, titleRes: Int, body: String?) {
             section.tvSectionTitle.setText(titleRes)
             section.tvSectionBody.text = body?.takeIf { it.isNotBlank() } ?: fallback
@@ -72,6 +83,7 @@ class EquipmentDetailActivity : AppCompatActivity() {
                     // El instructivo institucional manda; Gemini solo completa huecos.
                     sheet = sheet?.completedWith(loaded) ?: loaded
                     loadingSheet = false
+                    EquipmentHistory.saveSheet(this@EquipmentDetailActivity, label, sheet!!)
                     bindSections()
                 },
                 onFailure = { error ->
@@ -112,6 +124,10 @@ class EquipmentDetailActivity : AppCompatActivity() {
             })
         }
     }
+
+    private fun EquipmentSheet.isComplete(): Boolean = listOf(
+        components, procedure, ppe, risks, practices
+    ).all { !it.isNullOrBlank() }
 
     /** La ficha completa en texto plano, para copiar o compartir. */
     private fun buildPlainText(): String = buildString {

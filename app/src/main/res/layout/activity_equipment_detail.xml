@@ -89,29 +89,66 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- ══ Ficha ════════════════════════════════════════════════════
-                 Las cinco secciones que declara strings.xml. El contenido lo
-                 llenará el servidor del laboratorio; por ahora cada una
-                 muestra su estado vacío. -->
-            <include
-                android:id="@+id/sectionComponents"
-                layout="@layout/item_datasheet_section" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_card"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="18dp">
 
-            <include
-                android:id="@+id/sectionProcedure"
-                layout="@layout/item_datasheet_section" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-            <include
-                android:id="@+id/sectionPpe"
-                layout="@layout/item_datasheet_section" />
+                    <TextView
+                        style="@style/SectionTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/academic_guide_title"
+                        android:textColor="@color/accent" />
 
-            <include
-                android:id="@+id/sectionRisks"
-                layout="@layout/item_datasheet_section" />
+                    <TextView
+                        android:id="@+id/tvSheetStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_tertiary"
+                        android:textSize="11sp" />
+                </LinearLayout>
 
-            <include
-                android:id="@+id/sectionPractices"
-                layout="@layout/item_datasheet_section" />
+                <ProgressBar
+                    android:id="@+id/progressSheet"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="12dp"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@color/accent" />
+
+                <include
+                    android:id="@+id/sectionComponents"
+                    layout="@layout/item_datasheet_section" />
+
+                <include
+                    android:id="@+id/sectionProcedure"
+                    layout="@layout/item_datasheet_section" />
+
+                <include
+                    android:id="@+id/sectionPpe"
+                    layout="@layout/item_datasheet_section" />
+
+                <include
+                    android:id="@+id/sectionRisks"
+                    layout="@layout/item_datasheet_section" />
+
+                <include
+                    android:id="@+id/sectionPractices"
+                    layout="@layout/item_datasheet_section" />
+            </LinearLayout>
 
             <!-- ══ Acciones ═════════════════════════════════════════════════ -->
             <LinearLayout

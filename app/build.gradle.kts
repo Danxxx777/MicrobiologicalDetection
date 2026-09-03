@@ -8,7 +8,16 @@ val localProperties = Properties().apply {
     val file = rootProject.file("local.properties")
     if (file.exists()) file.inputStream().use(::load)
 }
-val geminiApiKey = localProperties.getProperty("GEMINI_API_KEY", "")
+val openAiApiKey = localProperties.getProperty("OPENAI_API_KEY", "")
+    .replace("\\", "\\\\")
+    .replace("\"", "\\\"")
+val openAiBaseUrl = localProperties.getProperty("OPENAI_BASE_URL", "https://api.openai.com")
+    .replace("\\", "\\\\")
+    .replace("\"", "\\\"")
+val openAiEndpoint = localProperties.getProperty("OPENAI_ENDPOINT", "/v1/responses")
+    .replace("\\", "\\\\")
+    .replace("\"", "\\\"")
+val openAiModel = localProperties.getProperty("OPENAI_MODEL", "gpt-5.6-luna")
     .replace("\\", "\\\\")
     .replace("\"", "\\\"")
 val roboflowApiKey = localProperties.getProperty("ROBOFLOW_API_KEY", "")
@@ -33,7 +42,10 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "GEMINI_API_KEY", "\"$geminiApiKey\"")
+        buildConfigField("String", "OPENAI_API_KEY", "\"$openAiApiKey\"")
+        buildConfigField("String", "OPENAI_BASE_URL", "\"$openAiBaseUrl\"")
+        buildConfigField("String", "OPENAI_ENDPOINT", "\"$openAiEndpoint\"")
+        buildConfigField("String", "OPENAI_MODEL", "\"$openAiModel\"")
         buildConfigField("String", "ROBOFLOW_API_KEY", "\"$roboflowApiKey\"")
         buildConfigField("String", "ROBOFLOW_MODEL_URL", "\"$roboflowModelUrl\"")
         buildConfigField("String", "ROBOFLOW_ENDPOINT", "\"$roboflowEndpoint\"")

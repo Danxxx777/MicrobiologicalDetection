@@ -51,6 +51,12 @@
             android:parentActivityName=".ui.MainActivity" />
 
         <activity
+            android:name=".ui.EquipmentHistoryActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".ui.MainActivity" />
+
+        <activity
             android:name=".ui.ChatActivity"
             android:exported="false"
             android:screenOrientation="portrait"

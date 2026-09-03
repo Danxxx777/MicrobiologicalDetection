@@ -23,6 +23,7 @@ import com.example.microbiologicaldetection.ml.DetectionResult
 import com.example.microbiologicaldetection.ml.DetectionTracker
 import com.example.microbiologicaldetection.ml.TFLiteDetector
 import com.example.microbiologicaldetection.data.EquipmentSession
+import com.example.microbiologicaldetection.data.EquipmentHistory
 import com.example.microbiologicaldetection.network.RoboflowApiClient
 import com.example.microbiologicaldetection.network.RoboflowConfig
 import java.util.concurrent.ExecutorService
@@ -65,7 +66,6 @@ class MainActivity : AppCompatActivity() {
         binding.topBar.applyInsetsPadding(top = true)
         // La pildora de estado cuelga bajo la fila de botones, asi que su
         // margen tambien tiene que bajar con la barra de estado.
-        binding.tvStatus.applyInsetsMargin(top = true)
         binding.bottomBar.applyInsetsPadding(bottom = true)
         binding.fabChat.applyInsetsMargin(bottom = true)
         binding.tvHint.applyInsetsMargin(bottom = true)
@@ -102,6 +102,13 @@ class MainActivity : AppCompatActivity() {
     private fun setUpControls() {
         binding.fabChat.setOnClickListener { openChat(lastResult?.label) }
 
+        binding.btnRefreshScanner.setOnClickListener {
+            tracker.reset()
+            binding.overlay.results = emptyList()
+            releasePreview()
+            lastInferenceAt = 0L
+        }
+
         // Atajo de revisión del HUD (inerte en release, ver debugFocus)
         binding.tvHint.setOnLongClickListener {
             binding.overlay.debugFocus("Autoclave vertical", 0.93f); true
@@ -109,10 +116,8 @@ class MainActivity : AppCompatActivity() {
 
         binding.navHome.setOnClickListener { finish() }
 
-        binding.navLastResult.setOnClickListener {
-            val result = lastResult
-            if (result == null) Toast.makeText(this, R.string.no_detection_yet, Toast.LENGTH_SHORT).show()
-            else openDetail(result)
+        binding.navHistory.setOnClickListener {
+            startActivity(Intent(this, EquipmentHistoryActivity::class.java))
         }
 
         binding.btnFlash.setOnClickListener {
@@ -139,7 +144,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun openDetail(result: DetectionResult) {
         lastResult = result
-        binding.navLastResult.imageTintList =
+        binding.navHistory.imageTintList =
             ContextCompat.getColorStateList(this, R.color.text_primary)
         startActivity(Intent(this, EquipmentDetailActivity::class.java).apply {
             putExtra(EquipmentDetailActivity.EXTRA_LABEL, result.label)
@@ -238,9 +243,12 @@ class MainActivity : AppCompatActivity() {
             binding.overlay.setImageDimensions(bitmap.width, bitmap.height)
             binding.overlay.results = stable
             stable.firstOrNull()?.let { result ->
+                if (lastResult?.label != result.label) {
+                    EquipmentHistory.record(this, result.label, result.confidence)
+                }
                 lastResult = result
                 EquipmentSession.save(this, result.label)
-                binding.navLastResult.imageTintList =
+                binding.navHistory.imageTintList =
                     ContextCompat.getColorStateList(this, R.color.text_primary)
             }
             binding.tvStatus.text = getString(R.string.status_format, stable.size, ms)
