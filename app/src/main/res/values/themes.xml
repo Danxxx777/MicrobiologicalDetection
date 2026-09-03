@@ -1,0 +1,28 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.MicrobiologicalDetection" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/green_primary</item>
+        <item name="colorPrimaryContainer">@color/green_dark</item>
+        <item name="colorOnPrimary">@color/green_on_primary</item>
+        <item name="colorSecondary">@color/green_light</item>
+        <item name="android:statusBarColor">@color/green_dark</item>
+        <item name="android:navigationBarColor">@color/green_dark</item>
+    </style>
+
+    <style name="Theme.MicrobiologicalDetection" parent="Base.Theme.MicrobiologicalDetection" />
+
+    <style name="Theme.MicrobiologicalDetection.Camera" parent="Base.Theme.MicrobiologicalDetection">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:statusBarColor">#00000000</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <!-- Título de sección en fichas técnicas -->
+    <style name="SectionTitle">
+        <item name="android:textColor">@color/green_dark</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.08</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+</resources>

@@ -1,0 +1,2 @@
+-keep class org.tensorflow.** { *; }
+-keep class com.example.microbiologicaldetection.** { *; }

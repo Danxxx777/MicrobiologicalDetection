@@ -1,0 +1,31 @@
+INSTRUCCIONES PARA INTEGRAR EL MODELO
+======================================
+
+Coloca los siguientes archivos en esta carpeta (app/src/main/assets/):
+
+1. model.tflite
+   - Modelo YOLOv8 exportado a TFLite (formato float32)
+   - El nombre del archivo debe ser exactamente: model.tflite
+   - Formato de entrada esperado: [1, 640, 640, 3] float32 (RGB normalizado 0-1)
+   - Formato de salida esperado: [1, 4+N_clases, 8400] float32 (formato YOLOv8)
+
+2. labels.txt
+   - Archivo de texto con una etiqueta por línea
+   - Deben estar en el mismo orden que las clases del modelo
+   - Ejemplo:
+       microscopio
+       incubadora
+       autoclave
+       centrifuga
+       vortex
+       camara_flujo
+       balanza
+       ph_metro
+       contador_colonias
+       espectrofotometro
+
+NOTAS:
+- El umbral de confianza por defecto es 0.40 (40%)
+- El umbral de IoU para NMS es 0.45
+- Si el modelo no se encuentra, la app mostrará un aviso amarillo en pantalla
+- La app funciona igualmente en modo preview sin el modelo

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Paleta del laboratorio -->
+    <color name="green_primary">#1a7504</color>
+    <color name="green_light">#22a005</color>
+    <color name="green_dark">#145a03</color>
+    <color name="green_bg">#f0f9f4</color>
+    <color name="green_surface">#e1f5e8</color>
+    <color name="green_on_primary">#FFFFFF</color>
+
+    <!-- Bounding box colors por clase -->
+    <color name="bbox_0">#FF6B35</color>
+    <color name="bbox_1">#00C8FF</color>
+    <color name="bbox_2">#4444FF</color>
+    <color name="bbox_3">#22a005</color>
+    <color name="bbox_4">#FF44AA</color>
+    <color name="bbox_5">#FFD700</color>
+    <color name="bbox_6">#FF3333</color>
+    <color name="bbox_7">#AA44FF</color>
+    <color name="bbox_8">#00FFAA</color>
+    <color name="bbox_9">#FF8800</color>
+    <color name="bbox_10">#00AAFF</color>
+    <color name="bbox_11">#FFAA00</color>
+
+    <!-- UI general -->
+    <color name="overlay_bg">#CC000000</color>
+    <color name="stats_bg">#BB000000</color>
+    <color name="chat_user_bubble">#1a7504</color>
+    <color name="chat_bot_bubble">#e1f5e8</color>
+    <color name="chat_user_text">#FFFFFF</color>
+    <color name="chat_bot_text">#1a1a1a</color>
+    <color name="divider">#DDDDDD</color>
+    <color name="text_secondary">#666666</color>
+    <color name="card_bg">#FFFFFF</color>
+</resources>

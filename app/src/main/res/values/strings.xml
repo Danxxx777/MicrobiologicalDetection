@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lab Microbiología UTEQ</string>
+    <string name="detection_title">Detección en tiempo real</string>
+    <string name="fps_label">FPS</string>
+    <string name="detections_label">detecciones</string>
+    <string name="ms_label">ms</string>
+    <string name="chat_hint">Escribe tu pregunta sobre el equipo…</string>
+    <string name="send">Enviar</string>
+    <string name="equipment_detail_title">Ficha técnica</string>
+    <string name="chat_title">Asistente IA</string>
+    <string name="components_title">Componentes principales</string>
+    <string name="procedure_title">Procedimiento básico de uso</string>
+    <string name="ppe_title">Equipos de protección personal</string>
+    <string name="risks_title">Riesgos asociados</string>
+    <string name="practices_title">Prácticas académicas</string>
+    <string name="open_chat">Consultar asistente</string>
+    <string name="no_model">Modelo no encontrado. Coloca model.tflite y labels.txt en assets/</string>
+    <string name="camera_permission_required">Se requiere permiso de cámara para usar la aplicación</string>
+    <string name="tap_equipment">Toca un equipo detectado para ver su ficha técnica</string>
+    <string name="confidence_label">Confianza</string>
+    <string name="server_url_hint">URL del servidor RAG (ej: http://192.168.1.10:8000)</string>
+    <string name="save">Guardar</string>
+    <string name="settings">Configuración</string>
+    <string name="internet_required">Se requiere acceso a red para el asistente</string>
+    <string name="thinking">Consultando documentos del laboratorio…</string>
+    <string name="source_label">Fuente</string>
+    <string name="no_info">No dispongo de información suficiente en los documentos del laboratorio. Consulte al docente o responsable del laboratorio.</string>
+</resources>
