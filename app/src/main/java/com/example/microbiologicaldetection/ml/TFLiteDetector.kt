@@ -95,10 +95,12 @@ class TFLiteDetector(private val context: Context) {
             }
             if (bestClass < 0) continue
 
-            val x1 = ((cx - w / 2f) / inputW) * bitmap.width
-            val y1 = ((cy - h / 2f) / inputH) * bitmap.height
-            val x2 = ((cx + w / 2f) / inputW) * bitmap.width
-            val y2 = ((cy + h / 2f) / inputH) * bitmap.height
+            val x1 = (((cx - w / 2f) / inputW) * bitmap.width).coerceIn(0f, bitmap.width.toFloat())
+            val y1 = (((cy - h / 2f) / inputH) * bitmap.height).coerceIn(0f, bitmap.height.toFloat())
+            val x2 = (((cx + w / 2f) / inputW) * bitmap.width).coerceIn(0f, bitmap.width.toFloat())
+            val y2 = (((cy + h / 2f) / inputH) * bitmap.height).coerceIn(0f, bitmap.height.toFloat())
+            if (!x1.isFinite() || !y1.isFinite() || !x2.isFinite() || !y2.isFinite()) continue
+            if (x2 <= x1 || y2 <= y1) continue
 
             candidates.add(DetectionResult(
                 label      = labels.getOrElse(bestClass) { "clase_$bestClass" },
@@ -108,7 +110,16 @@ class TFLiteDetector(private val context: Context) {
             ))
         }
 
-        return nms(candidates, iouThreshold)
+        val targetZone = RectF(
+            bitmap.width * 0.35f,
+            bitmap.height * 0.35f,
+            bitmap.width * 0.65f,
+            bitmap.height * 0.65f
+        )
+        val target = nms(candidates, iouThreshold)
+            .filter { RectF.intersects(it.boundingBox, targetZone) }
+            .maxByOrNull { it.confidence }
+        return listOfNotNull(target)
     }
 
     private fun nms(list: List<DetectionResult>, iouThreshold: Float): List<DetectionResult> {

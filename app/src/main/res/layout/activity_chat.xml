@@ -3,108 +3,122 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/green_bg"
+    android:background="@color/bg"
     android:orientation="vertical">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/green_dark">
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/green_dark"
-            app:navigationIcon="@drawable/ic_arrow_back"
-            app:navigationIconTint="@color/white"
-            app:subtitle=""
-            app:subtitleTextColor="#CCFFFFFF"
-            app:title="@string/chat_title"
-            app:titleTextColor="@color/white" />
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <!-- Context banner -->
+    <!-- ══ Encabezado ═══════════════════════════════════════════════════════ -->
     <LinearLayout
-        android:id="@+id/contextBanner"
+        android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/green_surface"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="10dp">
+        android:paddingHorizontal="@dimen/screen_padding"
+        android:paddingVertical="12dp">
 
-        <TextView
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="@drawable/bg_circle_action"
+            android:contentDescription="@string/back"
+            android:padding="11dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_arrow_back"
+            android:tint="@color/accent" />
+
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
             android:layout_weight="1"
-            android:text="Consultando sobre:"
-            android:textColor="@color/green_dark"
-            android:textSize="12sp" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvEquipmentContext"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:gravity="end"
-            android:textColor="@color/green_primary"
-            android:textSize="12sp"
-            android:textStyle="bold" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/chat_title"
+                style="@style/TextScreenTitle" />
+
+            <TextView
+                android:id="@+id/tvEquipmentContext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/accent"
+                android:textSize="12sp"
+                android:visibility="gone" />
+        </LinearLayout>
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/divider" />
-
-    <!-- Messages list -->
+    <!-- ══ Mensajes ═════════════════════════════════════════════════════════ -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerChat"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:clipToPadding="false"
-        android:paddingHorizontal="8dp"
+        android:paddingHorizontal="@dimen/chat_list_padding"
         android:paddingVertical="8dp" />
 
-    <!-- Input area -->
+    <!-- ══ Entrada ══════════════════════════════════════════════════════════ -->
     <LinearLayout
+        android:id="@+id/inputBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:elevation="4dp"
-        android:gravity="center_vertical"
+        android:gravity="bottom"
         android:orientation="horizontal"
-        android:paddingHorizontal="8dp"
-        android:paddingVertical="6dp">
+        android:paddingBottom="10dp"
+        android:paddingHorizontal="@dimen/screen_padding"
+        android:paddingTop="6dp">
 
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
+            android:id="@+id/etMessage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:boxStrokeColor="@color/green_primary"
-            app:hintTextColor="@color/green_primary"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense">
+            android:background="@drawable/bg_input_field"
+            android:hint="@string/chat_hint"
+            android:imeOptions="actionSend"
+            android:inputType="textMultiLine|textCapSentences"
+            android:maxLines="4"
+            android:minHeight="52dp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="14dp"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_tertiary"
+            android:textCursorDrawable="@null"
+            android:textSize="@dimen/chat_text"
+            android:autofillHints="" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etMessage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/chat_hint"
-                android:imeOptions="actionSend"
-                android:inputType="textMultiLine|textCapSentences"
-                android:maxLines="4"
-                android:textSize="14sp" />
-        </com.google.android.material.textfield.TextInputLayout>
+        <ImageButton
+            android:id="@+id/btnVoice"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/bg_circle_action"
+            android:contentDescription="@string/home_voice_assistant"
+            android:padding="14dp"
+            android:src="@drawable/ic_mic"
+            android:tint="@color/accent" />
 
-        <com.google.android.material.button.MaterialButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnSend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:text="@string/send"
-            app:backgroundTint="@color/green_primary" />
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="10dp"
+            android:contentDescription="@string/send"
+            android:src="@drawable/ic_send"
+            app:backgroundTint="@color/accent"
+            app:borderWidth="0dp"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Circle"
+            app:elevation="0dp"
+            app:fabCustomSize="52dp"
+            app:maxImageSize="22dp"
+            app:tint="@color/on_accent" />
     </LinearLayout>
 
 </LinearLayout>

@@ -1,6 +1,25 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
 }
+
+val localProperties = Properties().apply {
+    val file = rootProject.file("local.properties")
+    if (file.exists()) file.inputStream().use(::load)
+}
+val geminiApiKey = localProperties.getProperty("GEMINI_API_KEY", "")
+    .replace("\\", "\\\\")
+    .replace("\"", "\\\"")
+val roboflowApiKey = localProperties.getProperty("ROBOFLOW_API_KEY", "")
+    .replace("\\", "\\\\")
+    .replace("\"", "\\\"")
+val roboflowModelUrl = localProperties.getProperty("ROBOFLOW_MODEL_URL", "")
+    .replace("\\", "\\\\")
+    .replace("\"", "\\\"")
+val roboflowEndpoint = localProperties.getProperty("ROBOFLOW_ENDPOINT", "")
+    .replace("\\", "\\\\")
+    .replace("\"", "\\\"")
 
 android {
     namespace = "com.example.microbiologicaldetection"
@@ -14,6 +33,10 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "GEMINI_API_KEY", "\"$geminiApiKey\"")
+        buildConfigField("String", "ROBOFLOW_API_KEY", "\"$roboflowApiKey\"")
+        buildConfigField("String", "ROBOFLOW_MODEL_URL", "\"$roboflowModelUrl\"")
+        buildConfigField("String", "ROBOFLOW_ENDPOINT", "\"$roboflowEndpoint\"")
     }
 
     buildTypes {
@@ -28,6 +51,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
     androidResources {
         noCompress += "tflite"

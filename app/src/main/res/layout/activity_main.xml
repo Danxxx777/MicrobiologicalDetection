@@ -9,36 +9,136 @@
         android:id="@+id/viewFinder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:scaleType="fillStart" />
+        app:scaleType="fillCenter" />
+
+    <!-- Fotograma congelado al enfocar un equipo. Va encima del visor y usa el
+         mismo encuadre (centerCrop = FILL_CENTER) para que las cajas del
+         escáner sigan cayendo donde corresponde. -->
+    <ImageView
+        android:id="@+id/imgFreeze"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop"
+        android:visibility="gone" />
 
     <com.example.microbiologicaldetection.ml.BoundingBoxOverlay
         android:id="@+id/overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <!-- ══ Controles de cámara ══════════════════════════════════════════════
+         Solo lo que actúa sobre la captura. La navegación vive abajo. -->
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|end"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="8dp">
+
+        <ImageButton
+            android:id="@+id/btnFlash"
+            style="@style/CameraTopIcon"
+            android:contentDescription="@string/toggle_flash"
+            android:src="@drawable/ic_flash_off"
+            android:tint="@color/text_primary" />
+
+        <ImageButton
+            android:id="@+id/btnSwitchCamera"
+            style="@style/CameraTopIcon"
+            android:layout_marginStart="10dp"
+            android:contentDescription="@string/switch_camera"
+            android:src="@drawable/ic_camera_switch"
+            android:tint="@color/text_primary" />
+    </LinearLayout>
+
+    <!-- Estado de la inferencia: es informativo, no un control, así que no va
+         en la fila de botones. -->
     <TextView
         android:id="@+id/tvStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:layout_marginStart="12dp"
-        android:background="#AA000000"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="64dp"
+        android:layout_marginHorizontal="16dp"
+        android:background="@drawable/bg_pill_scrim"
+        android:ellipsize="end"
         android:fontFamily="monospace"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="4dp"
-        android:text="Iniciando..."
-        android:textColor="#CCFFFFFF"
-        android:textSize="12sp" />
+        android:maxLines="1"
+        android:paddingHorizontal="14dp"
+        android:paddingVertical="6dp"
+        android:text="Iniciando…"
+        android:textColor="@color/text_secondary"
+        android:textSize="11sp" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabChat"
+    <!-- ══ Sugerencia de uso ════════════════════════════════════════════════ -->
+    <TextView
+        android:id="@+id/tvHint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:contentDescription="Abrir chat"
-        android:src="@android:drawable/ic_menu_send"
-        app:backgroundTint="@color/green_primary"
-        app:tint="@color/white" />
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="140dp"
+        android:layout_marginHorizontal="32dp"
+        android:background="@drawable/bg_pill_scrim"
+        android:gravity="center"
+        android:paddingHorizontal="18dp"
+        android:paddingVertical="10dp"
+        android:text="@string/tap_equipment"
+        android:textColor="@color/text_primary"
+        android:textSize="12sp" />
+
+    <!-- ══ Navegación ═══════════════════════════════════════════════════════ -->
+    <FrameLayout
+        android:id="@+id/bottomArea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+
+        <LinearLayout
+            android:id="@+id/bottomBar"
+            android:layout_width="match_parent"
+            android:layout_height="76dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/bg_bottom_bar"
+            android:orientation="horizontal"
+            android:paddingHorizontal="12dp">
+
+            <ImageButton
+                android:id="@+id/navHome"
+                style="@style/BottomBarItem"
+                android:contentDescription="@string/nav_home"
+                android:src="@drawable/ic_home"
+                android:tint="@color/text_tertiary" />
+
+            <Space
+                android:layout_width="88dp"
+                android:layout_height="match_parent" />
+
+            <ImageButton
+                android:id="@+id/navLastResult"
+                style="@style/BottomBarItem"
+                android:contentDescription="@string/nav_last_result"
+                android:src="@drawable/ic_document"
+                android:tint="@color/text_tertiary" />
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabChat"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="46dp"
+            android:contentDescription="@string/open_chat"
+            android:src="@drawable/ic_chat"
+            app:backgroundTint="@color/accent"
+            app:borderWidth="0dp"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Circle"
+            app:elevation="8dp"
+            app:fabCustomSize="64dp"
+            app:maxImageSize="26dp"
+            app:tint="@color/on_accent" />
+    </FrameLayout>
 
 </FrameLayout>

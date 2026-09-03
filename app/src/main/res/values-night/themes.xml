@@ -1,8 +1,22 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Base.Theme.MicrobiologicalDetection" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/green_primary</item>
-        <item name="colorPrimaryContainer">@color/green_dark</item>
-        <item name="colorOnPrimary">@color/green_on_primary</item>
-        <item name="colorSecondary">@color/green_light</item>
+<resources>
+    <!-- El diseño es oscuro siempre; values/themes.xml ya define la identidad
+         completa. Este archivo existe solo para que el modo noche del sistema
+         no introduzca una variante distinta. -->
+    <style name="Base.Theme.MicrobiologicalDetection" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/accent</item>
+        <item name="colorOnPrimary">@color/on_accent</item>
+        <item name="colorPrimaryContainer">@color/accent_dark</item>
+        <item name="colorOnPrimaryContainer">@color/white</item>
+        <item name="colorSecondary">@color/accent_dark</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        <item name="colorOnSurfaceVariant">@color/text_secondary</item>
+        <item name="colorOutline">@color/outline</item>
+        <item name="android:colorBackground">@color/bg</item>
+        <item name="android:windowBackground">@color/bg</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
     </style>
 </resources>

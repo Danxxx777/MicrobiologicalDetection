@@ -1,28 +1,91 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Base.Theme.MicrobiologicalDetection" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/green_primary</item>
-        <item name="colorPrimaryContainer">@color/green_dark</item>
-        <item name="colorOnPrimary">@color/green_on_primary</item>
-        <item name="colorSecondary">@color/green_light</item>
-        <item name="android:statusBarColor">@color/green_dark</item>
-        <item name="android:navigationBarColor">@color/green_dark</item>
+
+    <!-- La app tiene una sola identidad visual (oscura), no sigue el modo
+         claro/oscuro del sistema: el diseño está construido sobre fondo carbón. -->
+    <style name="Base.Theme.MicrobiologicalDetection" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/accent</item>
+        <item name="colorOnPrimary">@color/on_accent</item>
+        <item name="colorPrimaryContainer">@color/accent_dark</item>
+        <item name="colorOnPrimaryContainer">@color/white</item>
+        <item name="colorSecondary">@color/accent_dark</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        <item name="colorOnSurfaceVariant">@color/text_secondary</item>
+        <item name="colorOutline">@color/outline</item>
+        <item name="android:colorBackground">@color/bg</item>
+        <item name="android:windowBackground">@color/bg</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
     </style>
 
     <style name="Theme.MicrobiologicalDetection" parent="Base.Theme.MicrobiologicalDetection" />
 
     <style name="Theme.MicrobiologicalDetection.Camera" parent="Base.Theme.MicrobiologicalDetection">
-        <item name="android:windowFullscreen">true</item>
-        <item name="android:statusBarColor">#00000000</item>
-        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowBackground">@color/black</item>
     </style>
 
-    <!-- Título de sección en fichas técnicas -->
-    <style name="SectionTitle">
-        <item name="android:textColor">@color/green_dark</item>
+    <!-- ══ Tipografía ═══════════════════════════════════════════════════════ -->
+    <style name="TextScreenTitle">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="TextFieldLabel">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="TextFieldValue">
+        <item name="android:textColor">@color/text_secondary</item>
         <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="SectionTitle">
+        <item name="android:textColor">@color/text_tertiary</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:letterSpacing">0.08</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <!-- ══ Componentes ══════════════════════════════════════════════════════ -->
+    <!-- Botón circular de acción (copiar, compartir, consultar) -->
+    <style name="CircleAction">
+        <item name="android:layout_width">52dp</item>
+        <item name="android:layout_height">52dp</item>
+        <item name="android:background">@drawable/bg_circle_action</item>
+        <item name="android:padding">14dp</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <!-- Ícono flotante sobre el visor de cámara -->
+    <style name="CameraTopIcon">
+        <item name="android:layout_width">44dp</item>
+        <item name="android:layout_height">44dp</item>
+        <item name="android:background">@drawable/bg_circle_scrim</item>
+        <item name="android:padding">11dp</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <!-- One UI reemplaza la forma de los FAB por un cuadrado redondeado.
+         Este overlay fuerza el círculo del diseño en cualquier fabricante. -->
+    <style name="ShapeAppearance.Circle" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <!-- Ítem lateral de la barra inferior -->
+    <style name="BottomBarItem">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:scaleType">fitCenter</item>
     </style>
 </resources>

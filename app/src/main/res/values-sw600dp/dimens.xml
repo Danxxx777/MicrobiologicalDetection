@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tablets y plegables abiertos -->
+    <dimen name="screen_padding">32dp</dimen>
+    <dimen name="card_padding">32dp</dimen>
+
+    <dimen name="equipment_name_text">30sp</dimen>
+    <dimen name="equipment_confidence_text">16sp</dimen>
+
+    <dimen name="chat_side_gap">120dp</dimen>
+    <dimen name="chat_list_padding">16dp</dimen>
+    <dimen name="chat_text">16sp</dimen>
+
+    <dimen name="home_hero_height">520dp</dimen>
+    <dimen name="home_hero_overlap">300dp</dimen>
+</resources>

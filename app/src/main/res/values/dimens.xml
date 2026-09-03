@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base: teléfonos (incluye pantallas de 320dp de ancho) -->
+    <dimen name="screen_padding">16dp</dimen>
+    <dimen name="card_padding">20dp</dimen>
+    <dimen name="content_max_width">640dp</dimen>
+
+    <dimen name="equipment_name_text">22sp</dimen>
+    <dimen name="equipment_confidence_text">14sp</dimen>
+
+    <dimen name="chat_side_gap">48dp</dimen>
+    <dimen name="chat_list_padding">8dp</dimen>
+    <dimen name="chat_text">14sp</dimen>
+
+    <!-- Portada de la pantalla de inicio -->
+    <dimen name="home_hero_height">360dp</dimen>
+    <dimen name="home_hero_overlap">188dp</dimen>
+</resources>

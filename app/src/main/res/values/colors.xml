@@ -3,19 +3,46 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <!-- Paleta del laboratorio -->
+    <!-- ══ Sistema de diseño oscuro ══════════════════════════════════════════
+         Base carbón + acento verde UTEQ. El verde original (#1a7504) es
+         demasiado oscuro para usarse como acento sobre fondo negro, así que
+         se aclara para los elementos activos y se reserva el tono profundo
+         para estados presionados. -->
+    <color name="bg">#0F0F10</color>
+    <color name="surface">#1C1C1E</color>
+    <color name="surface_2">#262628</color>
+    <color name="surface_3">#323235</color>
+    <color name="outline">#3A3A3D</color>
+
+    <color name="accent">#46C71E</color>
+    <color name="accent_dark">#2F8C13</color>
+    <color name="accent_deep">#1a7504</color>
+    <color name="on_accent">#0B1A05</color>
+
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#9A9AA0</color>
+    <color name="text_tertiary">#6B6B72</color>
+
+    <color name="scrim">#99000000</color>
+    <!-- Escaner tipo Pokedex alineado con el verde de la app. -->
+    <color name="hud_cyan">#FF72ED4D</color>
+    <color name="hud_cyan_soft">#FF46C71E</color>
+    <color name="hud_panel">#5972ED4D</color>
+    <color name="hud_panel_action">#A672ED4D</color>
+    <color name="hud_text_shadow">#CC0B1A05</color>
+    <color name="overlay_chip">#B3000000</color>
+
+    <!-- Paleta original del laboratorio (se conserva para el splash/ícono) -->
     <color name="green_primary">#1a7504</color>
     <color name="green_light">#22a005</color>
     <color name="green_dark">#145a03</color>
-    <color name="green_bg">#f0f9f4</color>
-    <color name="green_surface">#e1f5e8</color>
     <color name="green_on_primary">#FFFFFF</color>
 
     <!-- Bounding box colors por clase -->
     <color name="bbox_0">#FF6B35</color>
     <color name="bbox_1">#00C8FF</color>
-    <color name="bbox_2">#4444FF</color>
-    <color name="bbox_3">#22a005</color>
+    <color name="bbox_2">#4488FF</color>
+    <color name="bbox_3">#46C71E</color>
     <color name="bbox_4">#FF44AA</color>
     <color name="bbox_5">#FFD700</color>
     <color name="bbox_6">#FF3333</color>
@@ -25,14 +52,11 @@
     <color name="bbox_10">#00AAFF</color>
     <color name="bbox_11">#FFAA00</color>
 
-    <!-- UI general -->
-    <color name="overlay_bg">#CC000000</color>
-    <color name="stats_bg">#BB000000</color>
-    <color name="chat_user_bubble">#1a7504</color>
-    <color name="chat_bot_bubble">#e1f5e8</color>
-    <color name="chat_user_text">#FFFFFF</color>
-    <color name="chat_bot_text">#1a1a1a</color>
-    <color name="divider">#DDDDDD</color>
-    <color name="text_secondary">#666666</color>
-    <color name="card_bg">#FFFFFF</color>
+    <!-- Chat -->
+    <color name="chat_user_bubble">#46C71E</color>
+    <color name="chat_user_text">#0B1A05</color>
+    <color name="chat_bot_bubble">#262628</color>
+    <color name="chat_bot_text">#F2F2F4</color>
+
+    <color name="divider">#2E2E31</color>
 </resources>
